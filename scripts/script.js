@@ -186,6 +186,7 @@ function heroSlider() {
   // Create navigation buttons
   slides.forEach((_, index) => {
     const btn = document.createElement('button');
+    btn.type = 'button';
     btn.classList.add('nav-btn');
     btn.textContent = index + 1;
 

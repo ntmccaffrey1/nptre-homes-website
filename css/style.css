@@ -1020,7 +1020,7 @@ nav.main-menu {
     position: relative;
     background: #8db88d3d;
     border: 1px solid rgba(255, 255, 255, 0.315);
-    color: white;
+    color: var(--color-white);
     font-family: var(--font-secondary);
     border-radius: 50%;
     width: 30px;
@@ -1041,7 +1041,7 @@ nav.main-menu {
     right: -1px;
     bottom: -1px;
     border-radius: 50%;
-    background: conic-gradient(#fff 0% var(--progress, 0%), transparent 0% 100%);
+    background: conic-gradient(var(--color-white) 0% var(--progress, 0%), transparent 0% 100%);
     z-index: -1;
 }
 
@@ -1576,6 +1576,7 @@ nav.main-menu {
     max-height: 100vh;
     object-fit: contain;
     user-select: none;
+    -webkit-user-select: none;
     transition: transform 0.2s ease;
     touch-action: none;
     transform-origin: center center;
