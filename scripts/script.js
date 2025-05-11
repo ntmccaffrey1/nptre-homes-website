@@ -173,6 +173,8 @@ function heroSlider() {
 
   if (!slides.length || !navContainer) return;
 
+  navContainer.setAttribute('role', 'tablist');
+
   const SLIDE_DURATION = 5000;
   let currentSlide = 0;
   let isPaused = false;
@@ -189,10 +191,28 @@ function heroSlider() {
     btn.type = 'button';
     btn.classList.add('nav-btn');
     btn.textContent = index + 1;
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-label', `Go to slide ${index + 1}`);
+    btn.setAttribute('aria-selected', 'false');
+    btn.setAttribute('tabindex', index === 0 ? '0' : '-1');
 
     btn.addEventListener('click', () => handleNavClick(index));
     navContainer.appendChild(btn);
     navButtons.push(btn);
+  });
+
+  navContainer.addEventListener('keydown', (e) => {
+    const focusedIndex = navButtons.findIndex(btn => btn === document.activeElement);
+  
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+  
+      const dir = e.key === 'ArrowRight' ? 1 : -1;
+      const nextIndex = (focusedIndex + dir + navButtons.length) % navButtons.length;
+  
+      navButtons[nextIndex].focus();         // move keyboard focus
+      goToSlide(nextIndex);                  // change slide
+    }
   });
 
   function handleNavClick(index) {
@@ -207,11 +227,16 @@ function heroSlider() {
     clearProgress(navButtons[currentSlide]);
 
     slides[currentSlide].classList.remove('incoming');
+    slides[currentSlide].setAttribute('aria-hidden', 'true');
     navButtons[currentSlide].classList.remove('active');
+    navButtons[currentSlide].setAttribute('aria-selected', 'false');
 
     currentSlide = index;
+
     slides[currentSlide].classList.add('incoming');
+    slides[currentSlide].setAttribute('aria-hidden', 'false');
     navButtons[currentSlide].classList.add('active');
+    navButtons[currentSlide].setAttribute('aria-selected', 'true');
 
     updateNavButtons();
 
@@ -241,6 +266,8 @@ function heroSlider() {
   function updateNavButtons() {
     navButtons.forEach((btn, i) => {
       btn.classList.toggle('active', i === currentSlide);
+      btn.setAttribute('aria-selected', i === currentSlide ? 'true' : 'false');
+      btn.setAttribute('tabindex', i === currentSlide ? '0' : '-1');
       btn.innerHTML = (i === currentSlide)
         ? (isPaused ? icons.play : icons.pause)
         : i + 1;

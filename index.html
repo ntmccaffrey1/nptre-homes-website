@@ -39,12 +39,12 @@
     <div id="transition-overlay"></div>
     <header id="header"></header>
     <main id="main">
-        <div id="hero" class="hero slider">
-            <div class="hero-image scale-in" style="background-image: url('homes/images/seapowet/seapowet-nobg-min.webp')"></div> 
-            <div class="hero-image" style="background-image: url('homes/images/bayview/bayview-nobg3.webp')"></div>
-            <div class="hero-image" style="background-image: url('homes/images/beach/beach-nobg.webp')"></div>
-            <div class="hero-image" style="background-image: url('homes/images/seaside/seaside2-nobg.webp')"></div>
-            <div class="hero-image" style="background-image: url('homes/images/kimberley/kimberley-nobg.webp')"></div>
+        <div id="hero" class="hero slider" role="region" aria-label="Homes Slider">
+            <div class="hero-image scale-in" role="group" aria-roledescription="slide" aria-label="Beach Home" style="background-image: url('homes/images/beach/beach-nobg.webp')"></div>
+            <div class="hero-image" role="group" aria-roledescription="slide" aria-label="Seapowet Home" style="background-image: url('homes/images/seapowet/seapowet-nobg-min.webp')"></div> 
+            <div class="hero-image" role="group" aria-roledescription="slide" aria-label="Bayview Home" style="background-image: url('homes/images/bayview/bayview-nobg3.webp')"></div>
+            <div class="hero-image" role="group" aria-roledescription="slide" aria-label="Kimberley Home" style="background-image: url('homes/images/kimberley/kimberley-nobg.webp')"></div>
+            <div class="hero-image" role="group" aria-roledescription="slide" aria-label="Seaside Home" style="background-image: url('homes/images/seaside/seaside2-nobg.webp')"></div>
             <div class="hero-btn fade-up">
                 <div class="center-btn">
                     <div class="btn-loader-wrap">
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="slider-controls">
-                <div id="slider-nav"></div>
+                <div id="slider-nav" aria-label="Slider navigation" role="tablist"></div>
             </div>
         </div>
     </main>
