@@ -860,7 +860,7 @@ nav.main-menu {
 }
 
 .btn-wrapper .delay {
-    animation-delay: 2s;
+    animation-delay: .7s;
 }
 
 .btn svg {
@@ -874,7 +874,7 @@ nav.main-menu {
 }
 
 .btn-wrapper .open-gallery {
-    animation-delay: 2s;
+    animation-delay: .7s;
 }
 
 .blur-link {
@@ -953,9 +953,6 @@ nav.main-menu {
     position: absolute;
     width: var(--full-width);
     height: var(--max-height);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
     opacity: var(--opacity-zero);
     filter: blur(0px);
     transform: scale(1.04);
@@ -965,7 +962,21 @@ nav.main-menu {
     transform .5s ease-in-out;
     z-index: 0;
     pointer-events: none;
-    will-change: opacity, filter, transform;
+}
+
+.hero-image.incoming,
+.hero-image.outgoing {
+  will-change: opacity, filter, transform;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .hero-btn {
@@ -1103,6 +1114,16 @@ nav.main-menu {
     animation: fadeScaleIn .5s ease-out forwards;
     transform: scale(1.04);
     will-change: opacity, transform;
+}
+
+.project-hero:not(.img-loaded):before, .hero:not(.img-loaded)::before {
+    opacity: var(--opacity-zero);
+    pointer-events: none;
+}
+  
+.project-hero.img-loaded:before, .hero.img-loaded::before {
+    opacity: var(--opacity-large);
+    transition: opacity 0.5s ease;
 }
 
 .project-container {
@@ -1269,7 +1290,7 @@ nav.main-menu {
     opacity: var(--opacity-zero);
     transform: translateY(50px); 
     animation: fadeUp .5s forwards;
-    animation-delay: 1.5s;
+    animation-delay: .5s;
 }
 
 .animate-fade-up {
@@ -1322,7 +1343,7 @@ nav.main-menu {
     }
 
     50% {
-      transform: translateY(-20px); /* adjust height of bounce */
+      transform: translateY(-20px);
     }
 }
 
@@ -1776,7 +1797,7 @@ nav.main-menu {
 .tel-link {
     font-family: var(--font-secondary);
     font-size: var(--font-size-xsmall);
-    animation-delay: 1.6s;
+    animation-delay: .6s;
 }
 
 @media (min-width: 768px) {

@@ -33,7 +33,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="NPTRE" />
     <link rel="manifest" href="/images/site.webmanifest" />
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.min.css">
 </head>
 <body class="no-footer" id="homes">
     <div id="transition-overlay"></div>
@@ -123,12 +123,12 @@
             <div class="arrow-nav fade-in">
                 <div class="homes-slide-counter" id="slide-counter"></div>
                     <div class="arrow-buttons">
-                        <button type="button" class="blur-link" id="arrow-up" disabled>
+                        <button type="button" aria-label="Sroll up" class="blur-link" id="arrow-up" disabled>
                             <svg width="1.2rem" height="1.2rem" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 19V5M5 12l7-7 7 7" />
                               </svg>                                              
                         </button>
-                        <button type="button" class="blur-link" id="arrow-down">
+                        <button type="button" aria-label="Scroll down" class="blur-link" id="arrow-down">
                             <svg width="1.2rem" height="1.2rem" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 5v14M19 12l-7 7-7-7" />
                               </svg>     
@@ -139,6 +139,6 @@
         </div>
     </main>
     <script src="../scripts/lenis.min.js"></script>
-    <script src="../scripts/script.js"></script>
+    <script src="../scripts/script.min.js"></script>
 </body>
 </html>

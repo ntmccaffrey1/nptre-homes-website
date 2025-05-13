@@ -163,6 +163,44 @@ function fadeInElements() {
   onScroll();
 }
 
+/* ====================================================================
+ Wait Until ::before Displays on Project Hero and Hero Homepage Slider
+==================================================================== */ 
+
+function waitBefore() {
+  const projectHero = document.querySelector(".project-hero");
+  const hero = document.querySelector(".hero");
+
+  // Handle .project-hero image
+  if (projectHero) {
+    const img = projectHero.querySelector("img");
+
+    if (img) {
+      if (img.complete) {
+        projectHero.classList.add("img-loaded");
+      } else {
+        img.addEventListener("load", () => {
+          projectHero.classList.add("img-loaded");
+        });
+      }
+    }
+  }
+
+  // Handle .hero image
+  if (hero) {
+    const firstHeroImage = hero.querySelector(".hero-image img");
+    if (firstHeroImage) {
+      if (firstHeroImage.complete) {
+        hero.classList.add("img-loaded");
+      } else {
+        firstHeroImage.addEventListener("load", () => {
+          hero.classList.add("img-loaded");
+        });
+      }
+    }
+  }
+}
+
 /* =================================
    Homepage Slider
 ================================= */ 
@@ -318,6 +356,10 @@ function heroSlider() {
     }
   });
 
+  slides.forEach((slide, index) => {
+    slide.setAttribute('aria-hidden', index === currentSlide ? 'false' : 'true');
+  });
+
   // Initialize
   slides[currentSlide].classList.add('incoming');
   navButtons[currentSlide].classList.add('active');
@@ -403,7 +445,7 @@ function setActiveLink() {
   links.forEach(link => {
     const linkPath = new URL(link.getAttribute('href'), window.location.origin).pathname;
     const isExactMatch = linkPath === currentPath;
-    const isHomesMatch = linkPath.endsWith('/homes.html') && currentPath.startsWith('/homes/');
+    const isHomesMatch = linkPath.endsWith('/homes') && currentPath.startsWith('/homes/');
 
     if (isExactMatch || isHomesMatch) {
       link.classList.add('active');
@@ -815,4 +857,5 @@ function initializeComponents() {
   lazyImages();
   lenisScroll();
   projectFullSlider();
+  waitBefore();
 }
