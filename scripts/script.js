@@ -125,7 +125,7 @@ function fadeOutOnScroll(selector, threshold = 500) {
   window.addEventListener('scroll', function() {
     const opacity = Math.max(0, 1 - window.scrollY / threshold);
     fadeOutEl.style.opacity = opacity;
-  });
+  }, { passive: true });
 }
 
 /* =================================
@@ -142,7 +142,7 @@ function scrollProgressBar() {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = (scrollTop / docHeight) * 100;
     scrollProg.style.width = scrollPercent + '%';
-  });
+  }, { passive: true });
 }
 
 /* =================================
@@ -386,7 +386,7 @@ function backToHomes() {
     } else {
       backButton.classList.remove('visible');
     }
-  });
+  }, { passive: true });
 }
 
 /* =================================
@@ -639,9 +639,9 @@ function gallery() {
   nextBtn?.addEventListener('click', showNextImage);
   prevBtn?.addEventListener('click', showPrevImage);
 
-  popupImg.addEventListener('touchstart', handleTouchStart, false);
-  popupImg.addEventListener('touchmove', handleTouchMove, false);
-  popupImg.addEventListener('touchend', handleTouchEnd, false);
+  popupImg.addEventListener('touchstart', handleTouchStart, { passive: true });
+  popupImg.addEventListener('touchmove', handleTouchMove, { passive: true });
+  popupImg.addEventListener('touchend', handleTouchEnd, { passive: true });
 
   galleryImages.forEach((img, i) =>
     img.addEventListener('click', () => openPopup(i))
@@ -758,7 +758,7 @@ function projectFullSlider() {
   window.addEventListener('wheel', e => {
     if (isScrolling) return;
     e.deltaY > 0 ? nextSlide() : prevSlide();
-  });
+  }, { passive: true });
 
   window.addEventListener('touchstart', e => {
     startY = e.touches[0].clientY;
