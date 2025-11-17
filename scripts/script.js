@@ -400,11 +400,18 @@ function menuToggle() {
 
   if (!(hamburger && menu && overlay)) return;
 
-  const toggleMenuState = (isOpen) => {
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    menu.classList.remove('show');
+    overlay.classList.remove('show');
+    document.body.classList.remove('ov-hidden');
+    lenis.start();
+  }
+
+  function toggleMenuState(isOpen) {
     const toggleClass = (element, className, add = true) =>
       element.classList[add ? 'add' : 'remove'](className);
 
-    // Toggle active state for hamburger icon
     hamburger.classList.toggle('active');
 
     if (isOpen) {
@@ -414,7 +421,6 @@ function menuToggle() {
       document.body.classList.remove('ov-hidden');
       lenis.start();
 
-      // Remove closing class after transition completes
       setTimeout(() => toggleClass(menu, 'closing', false), 400);
     } else {
       toggleClass(menu, 'show');
@@ -422,12 +428,15 @@ function menuToggle() {
       document.body.classList.add('ov-hidden');
       lenis.stop();
     }
-  };
+  }
 
   hamburger.addEventListener('click', () => {
     const isOpen = menu.classList.contains('show');
     toggleMenuState(isOpen);
   });
+
+  // Expose closeMenu globally for use on pageshow
+  window.closeMenuOnBack = closeMenu;
 }
 
 /* =================================
@@ -785,6 +794,10 @@ function bodyFadeInOut() {
 
   // Clear transition on pageshow (e.g., back/forward cache)
   window.addEventListener('pageshow', () => {
+    if (typeof window.closeMenuOnBack === 'function') {
+      window.closeMenuOnBack();
+    }
+    
     document.body.classList.remove('page-exit');
     overlay?.classList.remove('show');
   });
